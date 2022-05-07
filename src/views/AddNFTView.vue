@@ -107,12 +107,13 @@
               >Group</label
             >
             <div class="mt-1">
-              <label for="country" class="sr-only">Country</label>
+              <label for="group" class="sr-only">Group</label>
               <select
-                id="country"
-                name="country"
-                class="h-full py-0 pl-4 pr-8 border-transparent bg-transparent text-gray-500 focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
+                id="group"
+                name="group"
+                class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
               >
+                <option disabled>Select</option>
                 <option>Buy</option>
                 <option>Sold</option>
                 <option>HODL</option>
@@ -183,9 +184,4 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { Switch } from "@headlessui/vue";
-
-const agreed = ref(false);
-</script>
+<script setup></script>
