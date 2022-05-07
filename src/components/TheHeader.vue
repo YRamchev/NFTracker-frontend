@@ -1,9 +1,3 @@
-Tailwind UI Ready for Tailwind CSS v3.0 Components Documentation Navbars
-Application UI Navigation Simple dark with menu button on left Requires JS Dark
-with quick action Requires JS Simple dark Requires JS Simple with menu button on
-left Requires JS Simple Requires JS With quick action Requires JS
-
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <Disclosure as="nav" class="bg-white shadow" v-slot="{ open }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,39 +27,39 @@ left Requires JS Simple Requires JS With quick action Requires JS
           </div>
           <div class="hidden md:ml-6 md:flex md:space-x-8">
             <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-            <a
-              href="#"
+            <router-link
+              :to="{ name: 'dashboard' }"
               class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
             >
               Dashboard
-            </a>
-            <a
-              href="#"
+            </router-link>
+            <router-link
+              :to="{ name: 'contact' }"
               class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
             >
               Contact us
-            </a>
-            <a
-              href="#"
+            </router-link>
+            <router-link
+              :to="{ name: 'support' }"
               class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
             >
               Support
-            </a>
+            </router-link>
           </div>
         </div>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-          <a
-            href="#"
+          <router-link
+            :to="{ name: login }"
             class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
           >
             Sign in
-          </a>
-          <a
-            href="#"
+          </router-link>
+          <router-link
+            :to="{ name: register }"
             class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
           >
             Sign up
-          </a>
+          </router-link>
         </div>
         <div class="flex items-center">
           <div class="flex-shrink-0">
