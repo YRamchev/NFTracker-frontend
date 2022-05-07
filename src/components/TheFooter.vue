@@ -38,12 +38,10 @@ import { defineComponent, h } from "vue";
 
 const navigation = {
   main: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Accessibility", href: "#" },
-    { name: "Partners", href: "#" },
+    { name: "Contact us", href: "#" },
+    { name: "Support", href: "#" },
+    { name: "FAQ", href: "#" },
+    { name: "Terms & Conditions", href: "#" },
   ],
   social: [
     {

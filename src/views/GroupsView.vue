@@ -80,7 +80,7 @@
       </div>
       <div class="mt-12">
         <form
-          action="#"
+          @click.prevent=""
           method="POST"
           class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
         >
@@ -94,6 +94,7 @@
               <input
                 type="text"
                 name="first-name"
+                v-model="name"
                 id="first-name"
                 autocomplete="given-name"
                 class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
@@ -109,21 +110,20 @@
             <div class="mt-1">
               <label for="group" class="sr-only">Currency</label>
               <select
+                v-model="currency"
                 id="group"
                 name="group"
                 class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
               >
                 <option disabled>Select</option>
-                <option>Buy</option>
-                <option>Sold</option>
-                <option>HODL</option>
-                <option>Long term</option>
+                <option>Ada</option>
               </select>
             </div>
           </div>
 
           <div class="sm:col-span-2">
             <button
+              @click="createGroup"
               type="submit"
               class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
@@ -136,4 +136,22 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import axios from "axios";
+const name = ref("");
+const currency = ref("");
+async function createGroup() {
+  try {
+    console.log(name.value);
+    axios.post("/groups", {
+      // eslint-disable-next-line vue/no-ref-as-operand
+      name: name.value,
+      // eslint-disable-next-line vue/no-ref-as-operand
+      currency: "ada",
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+</script>

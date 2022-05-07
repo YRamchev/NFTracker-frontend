@@ -17,9 +17,9 @@ export const useAuthStore = defineStore({
       const { email, password } = payload;
       return new Promise((resolve, reject) => {
         axios
-          .post("https://polar-citadel-83159.herokuapp.com/api/auth/local", {
-            identifier: email._value,
-            password: password._value,
+          .post("/auth/local", {
+            identifier: email.value,
+            password: password.value,
           })
           .then((response) => {
             this.jwt = response.data.jwt;
@@ -38,14 +38,11 @@ export const useAuthStore = defineStore({
       const { email, password } = payload;
       return new Promise((resolve, reject) => {
         axios
-          .post(
-            "https://polar-citadel-83159.herokuapp.com/api/auth/local/register",
-            {
-              username: email._value,
-              email: email._value,
-              password: password._value,
-            }
-          )
+          .post("/auth/local/register", {
+            username: email.value,
+            email: email.value,
+            password: password.value,
+          })
           .then((response) => {
             this.jwt = response.data.jwt;
             this.user = response.data.user;

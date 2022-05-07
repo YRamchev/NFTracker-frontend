@@ -62,6 +62,11 @@ const router = createRouter({
       },
     },
     {
+      path: "/groups",
+      name: "groups",
+      component: () => import("../views/GroupsView.vue"),
+    },
+    {
       path: "/:pathMatch(.*)*", //will match everything and put it under `$route.params.pathMatch`
       name: "not-found",
       component: () => import("../views/NotFoundView.vue"),
