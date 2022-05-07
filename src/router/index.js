@@ -28,6 +28,16 @@ const router = createRouter({
       name: "login",
       component: () => import("../views/LoginView.vue"),
     },
+    {
+      path: "/add-nft",
+      name: "add-nft",
+      component: () => import("../views/AddNFTView.vue"),
+    },
+    {
+      path: "/:pathMatch(.*)*", //will match everything and put it under `$route.params.pathMatch`
+      name: "not-found",
+      component: () => import("../views/NotFoundView.vue"),
+    },
   ],
 });
 

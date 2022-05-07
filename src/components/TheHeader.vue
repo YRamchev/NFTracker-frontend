@@ -27,22 +27,13 @@
           </div>
           <div class="hidden md:ml-6 md:flex md:space-x-8">
             <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-            <router-link
-              :to="{ name: 'dashboard' }"
-              class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-            >
+            <router-link :to="{ name: 'dashboard' }" class="header-link">
               Dashboard
             </router-link>
-            <router-link
-              :to="{ name: 'contact' }"
-              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-            >
+            <router-link :to="{ name: 'contact' }" class="header-link">
               Contact us
             </router-link>
-            <router-link
-              :to="{ name: 'support' }"
-              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-            >
+            <router-link :to="{ name: 'support' }" class="header-link">
               Support
             </router-link>
           </div>
@@ -63,13 +54,13 @@
         </div>
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <button
-              type="button"
+            <router-link
+              :to="{ name: 'add-nft' }"
               class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <PlusSmIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
               <span>Add NFT</span>
-            </button>
+            </router-link>
           </div>
           <div class="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
             <!-- <button
@@ -221,6 +212,16 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/vue";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/outline";
+import { MenuIcon, XIcon } from "@heroicons/vue/outline";
 import { PlusSmIcon } from "@heroicons/vue/solid";
 </script>
+
+<style lang="postcss" scoped>
+.header-link {
+  @apply border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium;
+}
+
+.header-link.router-link-exact-active {
+  @apply border-indigo-500 text-gray-900;
+}
+</style>
