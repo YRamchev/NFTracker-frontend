@@ -79,20 +79,11 @@
           </tr>
         </tbody>
       </table>
+      {{ groups }}
     </div>
   </div>
 </template>
 
 <script setup>
 import { PlusSmIcon } from "@heroicons/vue/solid";
-
-const people = [
-  {
-    name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.walton@example.com",
-    role: "Member",
-  },
-  // More people...
-];
 </script>

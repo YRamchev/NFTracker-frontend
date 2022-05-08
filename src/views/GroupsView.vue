@@ -145,10 +145,10 @@ async function createGroup() {
   try {
     console.log(name.value);
     axios.post("/groups", {
-      // eslint-disable-next-line vue/no-ref-as-operand
-      name: name.value,
-      // eslint-disable-next-line vue/no-ref-as-operand
-      currency: "ada",
+      data: {
+        name: name.value,
+        currency: "ada",
+      },
     });
   } catch (err) {
     console.log(err);
