@@ -204,19 +204,22 @@
 
 <script setup>
 import { useAuthStore } from "../stores/auth.js";
-import { ref } from "vue";
 import { useRouter } from "vue-router";
-const router = useRouter();
+import { ref } from "vue";
 const authStore = useAuthStore();
+const router = useRouter();
 const email = ref("");
 const password = ref("");
 
 async function signIn() {
   try {
-    authStore.signIn({ email, password });
-    router.push({
-      name: "dashboard",
-    });
+    authStore
+      .signIn({ email: email.value, password: password.value })
+      .then(() => {
+        router.push({
+          name: "dashboard",
+        });
+      });
   } catch (err) {
     console.log(err);
   }

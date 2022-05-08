@@ -6,7 +6,7 @@ export const useAuthStore = defineStore({
   state: () => ({
     jwt: sessionStorage.getItem("jwt") ? sessionStorage.getItem("jwt") : null,
     user: sessionStorage.getItem("user")
-      ? sessionStorage.getItem("user")
+      ? JSON.parse(sessionStorage.getItem("user"))
       : null,
   }),
   getters: {
@@ -18,13 +18,13 @@ export const useAuthStore = defineStore({
       return new Promise((resolve, reject) => {
         axios
           .post("/auth/local", {
-            identifier: email.value,
-            password: password.value,
+            identifier: email,
+            password: password,
           })
           .then((response) => {
             this.jwt = response.data.jwt;
             this.user = response.data.user;
-            sessionStorage.setItem("user", response.data.user);
+            sessionStorage.setItem("user", JSON.stringify(response.data.user));
             sessionStorage.setItem("jwt", response.data.jwt);
             resolve(response.data);
           })
@@ -39,14 +39,14 @@ export const useAuthStore = defineStore({
       return new Promise((resolve, reject) => {
         axios
           .post("/auth/local/register", {
-            username: email.value,
-            email: email.value,
-            password: password.value,
+            username: email,
+            email: email,
+            password: password,
           })
           .then((response) => {
             this.jwt = response.data.jwt;
             this.user = response.data.user;
-            sessionStorage.setItem("user", response.data.user);
+            sessionStorage.setItem("user", JSON.stringify(response.data.user));
             sessionStorage.setItem("jwt", response.data.jwt);
             resolve(response.data);
           })

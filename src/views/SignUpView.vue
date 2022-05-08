@@ -184,7 +184,7 @@ const password = ref("");
 
 async function signUp() {
   try {
-    authStore.signUp({ email, password });
+    authStore.signUp({ email: email.value, password: password.value });
   } catch (err) {
     console.log(err);
   }

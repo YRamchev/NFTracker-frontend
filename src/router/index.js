@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import auth from "../middleware/auth";
-import guest from "../middleware/guest";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,7 +24,7 @@ const router = createRouter({
       name: "sign-up",
       component: () => import("../views/SignUpView.vue"),
       meta: {
-        middleware: guest,
+        middleware: ["guest"],
       },
     },
     {
@@ -34,7 +32,7 @@ const router = createRouter({
       name: "sign-in",
       component: () => import("../views/SignInView.vue"),
       meta: {
-        middleware: guest,
+        middleware: ["guest"],
       },
     },
     {
@@ -42,7 +40,7 @@ const router = createRouter({
       name: "dashboard",
       component: () => import("../views/DashboardView.vue"),
       meta: {
-        middleware: auth,
+        middleware: ["auth"],
       },
     },
     {
@@ -50,7 +48,7 @@ const router = createRouter({
       name: "add-nft",
       component: () => import("../views/AddNFTView.vue"),
       meta: {
-        middleware: auth,
+        middleware: ["auth"],
       },
     },
     {
@@ -58,7 +56,7 @@ const router = createRouter({
       name: "groups",
       component: () => import("../views/GroupsView.vue"),
       meta: {
-        middleware: auth,
+        middleware: ["auth"],
       },
     },
     {
@@ -74,43 +72,26 @@ const router = createRouter({
   ],
 });
 
-// Creates a `nextMiddleware()` function which not only
-// runs the default `next()` callback but also triggers
-// the subsequent Middleware function.
-function nextFactory(context, middleware, index) {
-  const subsequentMiddleware = middleware[index];
-  // If no subsequent Middleware exists,
-  // the default `next()` callback is returned.
-  if (!subsequentMiddleware) return context.next;
-
-  return (...parameters) => {
-    // Run the default Vue Router `next()` callback first.
-    context.next(...parameters);
-    // Then run the subsequent Middleware with a new
-    // `nextMiddleware()` callback.
-    const nextMiddleware = nextFactory(context, middleware, index + 1);
-    subsequentMiddleware({ ...context, next: nextMiddleware });
-  };
-}
-
 router.beforeEach((to, from, next) => {
   if (to.meta.middleware) {
-    const middleware = Array.isArray(to.meta.middleware)
-      ? to.meta.middleware
-      : [to.meta.middleware];
+    if (to.meta.middleware.includes("auth")) {
+      if (sessionStorage.getItem("jwt")) {
+        return next();
+      } else {
+        return next({ name: "sign-in" });
+      }
+    }
 
-    const context = {
-      from,
-      next,
-      router,
-      to,
-    };
-    const nextMiddleware = nextFactory(context, middleware, 1);
-
-    return middleware[0]({ ...context, next: nextMiddleware });
+    if (to.meta.middleware.includes("guest")) {
+      if (!sessionStorage.getItem("jwt")) {
+        return next();
+      } else {
+        return next({ name: "home" });
+      }
+    }
   }
 
-  next();
+  return next();
 });
 
 export default router;
