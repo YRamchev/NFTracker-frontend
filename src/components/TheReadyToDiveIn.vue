@@ -15,10 +15,10 @@
               Ac euismod vel sit maecenas id pellentesque eu sed consectetur.
               Malesuada adipiscing sagittis vel nulla nec.
             </p>
-            <a
-              href="#"
+            <router-link
+              :to="{ name: 'sign-up' }"
               class="mt-8 bg-white border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-indigo-600 hover:bg-indigo-50"
-              >Sign up</a
+              >Sign up</router-link
             >
           </div>
         </div>
