@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */ /* eslint-disable prettier/prettier */
 <template>
   <div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
     <div class="relative max-w-xl mx-auto">
@@ -71,11 +72,10 @@
         <h2
           class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl"
         >
-          Groups
+          Collections
         </h2>
         <p class="mt-4 text-lg leading-6 text-gray-500">
-          Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat
-          massa dictumst amet. Sapien tortor lacus arcu.
+          Add a collection to your account to track your NFTs.
         </p>
       </div>
       <div class="mt-12">
@@ -127,7 +127,7 @@
               type="submit"
               class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Submit
+              Add Collection
             </button>
           </div>
         </form>
@@ -136,22 +136,35 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import { ref } from "vue";
 import axios from "axios";
-const name = ref("");
-const currency = ref("");
-async function createGroup() {
-  try {
-    console.log(name.value);
-    axios.post("/groups", {
-      data: {
-        name: name.value,
-        currency: "ada",
-      },
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
+
+export default {
+  setup() {
+    const name = ref("");
+    const currency = ref("");
+
+    function createGroup() {
+      try {
+        axios.post(
+          "groups?[populate]=*",
+          {
+            data: {
+              name: name.value,
+              currency: currency.value.toLowerCase(),
+              nfts: [1],
+              user: 27,
+            },
+          },
+          ["user.id"]
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    return { name, createGroup, currency };
+  },
+};
 </script>

@@ -177,16 +177,11 @@
       </main>
     </div>
   </div>
+  <the-features />
+  <the-ready-to-dive-in />
 </template>
 
 <script setup>
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-import { MenuIcon, XIcon } from "@heroicons/vue/outline";
-
-const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
-];
+import TheFeatures from "../components/TheFeatures.vue";
+import TheReadyToDiveIn from "../components/TheReadyToDiveIn.vue";
 </script>

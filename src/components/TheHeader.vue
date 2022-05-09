@@ -64,7 +64,7 @@
               :to="{ name: 'groups' }"
               class="relative inline-flex items-center px-4 py-2.5 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              <span>Manage Groups</span>
+              <span>Manage Collections</span>
             </router-link>
           </div>
           <div class="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
