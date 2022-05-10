@@ -8,7 +8,7 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 
-axios.defaults.baseURL = "https://polar-citadel-83159.herokuapp.com/api";
+axios.defaults.baseURL = "https://polar-citadel-83159.herokuapp.com/";
 axios.interceptors.request.use(
   function (config) {
     const token = sessionStorage.getItem("jwt");

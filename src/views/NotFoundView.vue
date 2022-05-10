@@ -1,13 +1,4 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <!--
-    This example requires updating your template:
-
-    ```
-    <html class="h-full">
-    <body class="h-full">
-    ```
-  -->
   <main
     class="min-h-full bg-cover bg-top sm:bg-top"
     style="

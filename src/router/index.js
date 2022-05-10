@@ -35,6 +35,7 @@ const router = createRouter({
         middleware: ["guest"],
       },
     },
+    // Dashboard routes
     {
       path: "/dashboard",
       name: "dashboard",
@@ -44,25 +45,36 @@ const router = createRouter({
       },
     },
     {
-      path: "/add-nft",
-      name: "add-nft",
-      component: () => import("../views/AddNFTView.vue"),
+      path: "/nfts",
+      name: "nfts",
+      component: () => import("../views/NftListView.vue"),
       meta: {
         middleware: ["auth"],
       },
     },
     {
-      path: "/groups",
-      name: "groups",
-      component: () => import("../views/GroupsView.vue"),
+      path: "/nft/create",
+      name: "nft-create",
+      component: () => import("../views/NftCreateView.vue"),
       meta: {
         middleware: ["auth"],
       },
     },
     {
-      path: "/groups",
-      name: "groups",
-      component: () => import("../views/GroupsView.vue"),
+      path: "/collections",
+      name: "collections",
+      component: () => import("../views/CollectionListView.vue"),
+      meta: {
+        middleware: ["auth"],
+      },
+    },
+    {
+      path: "/collections/create",
+      name: "collections-create",
+      component: () => import("../views/CollectionCreateView.vue"),
+      meta: {
+        middleware: ["auth"],
+      },
     },
     {
       path: "/:pathMatch(.*)*", //will match everything and put it under `$route.params.pathMatch`
